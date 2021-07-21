@@ -41,20 +41,35 @@ class App extends Component{
       if(vowelsArray.includes(currentWord[0])){
         return currentWord + "way"
         // If word starts with qu:
-        // Come back to think about words that do not start with qu
-      }else if(currentWord.charAt(0) === "q"){
-      let slicedLetters = currentWord.slice(0,2)
-      let newWord = currentWord.substring(2)
-      return newWord + slicedLetters + "ay"
+      }  
+      else if(currentWord.charAt(0) === "q"){
+        let slicedLetters = currentWord.slice(0,2)
+        let newWord = currentWord.substring(2)
+        return newWord + slicedLetters + "ay"
+
+      //Edge cases with q
+      }else if (currentWord.includes('qu')){
+        for (let i = 0; i < currentWord.length; i++){
+          if ('qu'.indexOf(currentWord[i])){
+            let newQStr = currentWord.slice(0, i-3) 
+            let newQCons = currentWord.slice(i+3)
+            return newQCons + newQStr + "ay"
+          }
+      }    
       // If word has no vowels and has a y => y is treated as vowel:
     }else if(currentWord.replace(/[aeiou]/gi, '') === currentWord && currentWord.includes("y")){
       let slicedYWord = currentWord.slice(0, currentWord.indexOf("y"))
       let newYWord = currentWord.substring(currentWord.indexOf("y"))
       return newYWord + slicedYWord + "ay"
-    }else if()
-    currentWord[i].split(/[aeiou]/gi
-
-
+    }else {
+      for (let i = 0; i < currentWord.length; i++){
+        if ('aeiou'.indexOf(currentWord[i]) !== -1){
+          let newStr = currentWord.slice(0, i) 
+          let newCons = currentWord.slice(i)
+          return newCons + newStr + "ay"
+        }
+      }
+    }
       // Remember: console.log is your friend :)
 
 
