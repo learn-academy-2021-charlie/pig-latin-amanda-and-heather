@@ -37,34 +37,49 @@ class App extends Component{
 
       // your code here!
 
+      // How to get rid of punctuation:
+    var punctuation = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+
+    const removePunctuation = (currentWord) => {
+      return currentWord.split('').filter(function(letter){
+        return punctuation.indexOf(letter) === -1;
+      }).join('')
+
+    }
+    currentWord = removePunctuation(currentWord)
+    currentWord = currentWord.toLowerCase()
+
       // If word starts with a vowel:
       if(vowelsArray.includes(currentWord[0])){
         return currentWord + "way"
-        // If word starts with qu:
-      }  
+
+        // If word starts with q:
+      }
       else if(currentWord.charAt(0) === "q"){
         let slicedLetters = currentWord.slice(0,2)
         let newWord = currentWord.substring(2)
         return newWord + slicedLetters + "ay"
 
-      //Edge cases with q
+      //Edge cases with qu:
       }else if (currentWord.includes('qu')){
         for (let i = 0; i < currentWord.length; i++){
           if ('qu'.indexOf(currentWord[i])){
-            let newQStr = currentWord.slice(0, i-3) 
+            let newQStr = currentWord.slice(0, i-3)
             let newQCons = currentWord.slice(i+3)
             return newQCons + newQStr + "ay"
           }
-      }    
+      }
       // If word has no vowels and has a y => y is treated as vowel:
     }else if(currentWord.replace(/[aeiou]/gi, '') === currentWord && currentWord.includes("y")){
       let slicedYWord = currentWord.slice(0, currentWord.indexOf("y"))
       let newYWord = currentWord.substring(currentWord.indexOf("y"))
       return newYWord + slicedYWord + "ay"
+
+      // Taking care of consonant starting words:
     }else {
       for (let i = 0; i < currentWord.length; i++){
         if ('aeiou'.indexOf(currentWord[i]) !== -1){
-          let newStr = currentWord.slice(0, i) 
+          let newStr = currentWord.slice(0, i)
           let newCons = currentWord.slice(i)
           return newCons + newStr + "ay"
         }
