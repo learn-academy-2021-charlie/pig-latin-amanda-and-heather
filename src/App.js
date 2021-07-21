@@ -10,8 +10,10 @@ class App extends Component{
       // "phrase" is the text entered by the user - right now there are test words hard coded to make the process of testing your code faster and easier
       // ACTION ITEM: when you are ready for your full user experience, delete the test words so phrase is assigned an empty string
       phrase: "alpha through yummy squeal queen fry",
+      // Test phrase yummy
       // "phraseTranslated" is what the user will see appear on the page as Pig Latin, it starts as the preset message and updates when your user clicks the "submit" button
       phraseTranslated: "This is where your translated sentence will appear."
+      // expected output ummyyay
     }
   }
 
@@ -34,6 +36,24 @@ class App extends Component{
       console.log("vowelsArray:", vowelsArray)
 
       // your code here!
+
+      // If word starts with a vowel:
+      if(vowelsArray.includes(currentWord[0])){
+        return currentWord + "way"
+        // If word starts with qu:
+        // Come back to think about words that do not start with qu
+      }else if(currentWord.charAt(0) === "q"){
+      let slicedLetters = currentWord.slice(0,2)
+      let newWord = currentWord.substring(2)
+      return newWord + slicedLetters + "ay"
+      // If word has no vowels and has a y => y is treated as vowel:
+    }else if(currentWord.replace(/[aeiou]/gi, '') === currentWord && currentWord.includes("y")){
+      let slicedYWord = currentWord.slice(0, currentWord.indexOf("y"))
+      let newYWord = currentWord.substring(currentWord.indexOf("y"))
+      return newYWord + slicedYWord + "ay"
+    }else if()
+    currentWord[i].split(/[aeiou]/gi
+
 
       // Remember: console.log is your friend :)
 
